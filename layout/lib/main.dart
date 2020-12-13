@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'favoriteA.dart';
+import 'favoriteB.dart';
+import 'favoriteC.dart';
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -82,16 +87,32 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
-              // onTap: () {
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => TapboxA(),
-              //       ));
-              // },
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TapboxA(),
+                    ));
+              },
               child: _buildButtonColumn(color, Icons.call, 'CALL')),
-          _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
-          _buildButtonColumn(color, Icons.share, 'SHARE'),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ParentWidget(),
+                    ));
+              },
+              child: _buildButtonColumn(color, Icons.near_me, 'ROUTE')),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ParentWidgetC(),
+                    ));
+              },
+              child: _buildButtonColumn(color, Icons.share, 'SHARE')),
         ],
       ),
     );
@@ -146,7 +167,6 @@ class FavoriteWidget extends StatefulWidget {
 class _FavoriteWidgetState extends State<FavoriteWidget> {
   bool _isFavorited = true;
   int _favoriteCount = 41;
-
   void _toggleFavorite() {
     setState(() {
       if (_isFavorited) {
